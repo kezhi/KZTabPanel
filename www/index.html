@@ -286,14 +286,13 @@
 					resize: false
 				}
 			});
+
+			var liWidth = $('.tab_header li').width();
 			myScroll.on('scrollEnd', function () {
-				//if ( this.x < -1000 ) {
-				console.log(myScroll.currentPage)
-				//、、}
 
 				$('.tab_header li a').removeClass('on');
 				$('.tab_header li').eq(myScroll.currentPage.pageX).children('a').addClass('on');
-
+				$('.cur_on').css({'transform':'translate('+myScroll.currentPage.pageX*liWidth+'px)',transition: '100ms'});
 
 			});
 

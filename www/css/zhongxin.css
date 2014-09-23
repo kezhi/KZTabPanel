@@ -22,6 +22,7 @@ Author	kezhi
 	-o-transform: translateX(0px);
 	-ms-transform: translateX(0px);
 	transform: translateX(0px);
+	height: 42px;
 }
 
 .tab_header > ul:after {
@@ -40,7 +41,7 @@ h1,h2,h3,h4{
 	position: relative;
 	text-align: center;
 	color: #808080;
-	height: 44px;
+	height: 42px;
 	-webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
@@ -71,7 +72,7 @@ h1,h2,h3,h4{
 
 .tab_header li a.on {
 	color: #21346e;
-	border-bottom: 2px solid #1f61f0;
+	/*border-bottom: 2px solid #1f61f0;*/
 }
 
 .tab_content_container {
@@ -319,4 +320,10 @@ h2.bg-blue{
 	height: 20px;
 	border-radius: 10px;
 	background: #777;*/
+}
+.cur_on {
+	background: #1f61f0;
+	height: 2px;
+	position: absolute;
+	left: 0;
 }

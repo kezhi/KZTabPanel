@@ -43,19 +43,23 @@
 	}
 
 	/**
+	 * add_bottom_arrow
+	 */
+	function add_bottom_arrow(obj,opts){
+		var liWidth = $('li',obj).width()+1;
+		obj.liArrow = '<div class="cur_on" style="width: '+liWidth+'px"></div>';
+		obj.parent().append(obj.liArrow);
+	}
+
+
+	/**
 	 * bind li click event
 	 */
 
 	function add_li_click_event(obj,opts,_this){
-		//var liWidth= parseInt((Math.ceil(obj.width() / opts.minItems ) * 100 ) / obj.width());
-		//add_bottom_arrow;
-		//var liArrow='<span class="li_arrow"></span>';
-		//$('li:first',obj).append(liArrow);
-
 		//var onURL = getParameter(document.URL);
-		console.log(_this);
 		$('li', obj).eq(opts.onItem).children('a').addClass('on');
-		//$('.tab_content',_this).eq(opts.onItem).addClass('current');
+		var liWidth = $('li',obj).width();
 
 		$('li', obj).on(opts.changeMode,function(){
 			if( obj.currentIndex != $('li',obj).index($(this))){
@@ -64,25 +68,9 @@
 				$('li a',obj).removeClass('on');
 				$(this).children('a').addClass('on');
 
-//				alert(myScroll.currentPage.pageX);
+				$('.cur_on').css({'transform':'translate('+obj.currentIndex*liWidth+'px)',transition: '200ms'});
+				console.log(obj.currentIndex,liWidth);
 
-
-
-
-
-
-				/*var matrix = opts.tabConPosition.css('transform');
-				var transValue = matrix.match(/-?[\d\.]+/g);
-
-				var transNow = $(window).width()*obj.currentIndex;
-				opts.tabConPosition.css({'transform':'translate(-'+transNow+'px)',transition: '400ms'});*/
-
-
-
-
-				//console.log(transValue[4],transNow);
-				//$('.tab_content',_this).eq(obj.currentIndex).addClass('current').siblings().removeClass('current');
-				//$(this).append(liArrow);
 
 				//add callback
 				opts.callBack(obj.currentIndex);
@@ -259,6 +247,8 @@
 			tab_touchmove_event(obj,opts);
 
 			tab_touchend_event(obj,opts);
+
+			add_bottom_arrow(obj);
 		});
 		// each end
 	}
