@@ -220,15 +220,19 @@
 			</div>	
 		</div>
 		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/fastclick.js"></script>
 		<script type="text/javascript" src="js/jquery.lt_tab.js"></script>
 		<script type="text/javascript" src="js/iscroll.js"></script>
 		<script type="text/javascript">
+
+		FastClick.attach(document.body);
 		//tab
 		$(".tab").lt_tab({
 			changeMode : "click",
-			onItem:2,
+			onItem:0,
 			callBack:function(currentIndex){
 				console.log(currentIndex);
+				myScroll.goToPage(currentIndex, 0, 400);
 			}
 		});
 
@@ -282,11 +286,22 @@
 					resize: false
 				}
 			});
+			myScroll.on('scrollEnd', function () {
+				//if ( this.x < -1000 ) {
+				console.log(myScroll.currentPage)
+				//、、}
+
+				$('.tab_header li a').removeClass('on');
+				$('.tab_header li').eq(myScroll.currentPage.pageX).children('a').addClass('on');
+
+
+			});
 
 
 
 
-//			alert($('.tab_item').width());
+
+
 
 		}
 

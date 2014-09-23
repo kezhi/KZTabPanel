@@ -64,13 +64,23 @@
 				$('li a',obj).removeClass('on');
 				$(this).children('a').addClass('on');
 
-				var matrix = opts.tabConPosition.css('transform');
+//				alert(myScroll.currentPage.pageX);
+
+
+
+
+
+
+				/*var matrix = opts.tabConPosition.css('transform');
 				var transValue = matrix.match(/-?[\d\.]+/g);
 
 				var transNow = $(window).width()*obj.currentIndex;
-				opts.tabConPosition.css({'transform':'translate(-'+transNow+'px)',transition: '400ms'});
+				opts.tabConPosition.css({'transform':'translate(-'+transNow+'px)',transition: '400ms'});*/
 
-				console.log(transValue[4],transNow);
+
+
+
+				//console.log(transValue[4],transNow);
 				//$('.tab_content',_this).eq(obj.currentIndex).addClass('current').siblings().removeClass('current');
 				//$(this).append(liArrow);
 
