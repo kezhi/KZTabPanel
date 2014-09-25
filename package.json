@@ -5,12 +5,10 @@
     "type": "git",
     "url": "git@github.com:kezhi/KZTabPanel.git"
   },
-  "devDependencies": {
+  "dependencies": {
     "gulp": "^3.8.7",
     "gulp-uglify": "^0.3.1",
-    "gulp-rename": "^1.2.0"
-  },
-  "dependencies": {
+    "gulp-rename": "^1.2.0",
     "shelljs": "^0.3.0"
   }
 }
