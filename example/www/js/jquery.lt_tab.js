@@ -7,7 +7,6 @@
  */
 
 ;(function($){
-
 	/**
 	 * set li position
 	 * liWidth 计算li宽度百分比
@@ -65,19 +64,8 @@
 				obj.currentIndex = $('li',obj).index($(this));
 				$('li a',obj).removeClass('on');
 				$(this).children('a').addClass('on');
-
-				$('.cur_on').css({'transform':'translate('+obj.currentIndex*liWidth+'px)',transition: '200ms'});
-
-				obj.myScroll=new IScroll('.tab_content_container', {
-					scrollX: true,
-					momentum: false,
-					snap: '.tab_content',
-					snapSpeed: 400,
-					keyBindings: true
-				});
 				//add callback
 				opts.callBack(obj.currentIndex,obj.myScroll);
-
 			}
 		});
 	}
@@ -179,11 +167,11 @@
 		//var t = newLeft % obj.columnWidth;
 
 		// 如果超过半个的宽度就走一个的宽度
-//		if ((Math.abs(t)) > ((obj.columnWidth / 2))) {
-//			newLeft -= (obj.columnWidth - Math.abs(t));
-//		} else {
-//			newLeft -= t;
-//		}
+		/*if ((Math.abs(t)) > ((obj.columnWidth / 2))) {
+			newLeft -= (obj.columnWidth - Math.abs(t));
+		} else {
+			newLeft -= t;
+		}*/
 
 		if (obj.slidingLeft) {
 			var maxLeft = parseInt('-' + (obj.objWidth - obj.parentWidth), 10);
@@ -213,6 +201,8 @@
 			console.log(index);
 
 			$(objCon).height($('.tab_content_container').height());
+
+			//竖向滚动
 			var xScroll = 'xScroll0'+index;
 			xScroll = new IScroll('#tab_con0'+index, {
 				scrollbars: true,
@@ -223,7 +213,7 @@
 			});
 
 		});
-
+		//横向滚动
 		obj.myScroll = new IScroll('.tab_content_container', {
 			scrollX: true,
 			momentum: false,
@@ -233,17 +223,15 @@
 		});
 
 		var liWidth = $('.tab_header li').width();
+		//横向滚动完成后给导航添加样式
 		obj.myScroll.on('scrollEnd', function () {
 			$('.tab_header li a').removeClass('on');
 			$('.tab_header li').eq(obj.myScroll.currentPage.pageX).children('a').addClass('on');
 			$('.cur_on').css({'transform':'translate('+ obj.myScroll.currentPage.pageX*liWidth+'px)',transition: '100ms'});
-
-			console.log(obj.myScroll.currentPage)
+//			console.log(obj.myScroll.currentPage)
 		});
-
 		document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
 	}
-
 
 	/**
 	 * 初使化值
@@ -254,7 +242,7 @@
 		var startLeft = $(obj).data('startLeft',0);
 		var startX = $(obj).data('startX',0);
 		var endX = $(obj).data('endX',0);
-		var myScroll = $(obj).data('myScroll',0);
+		var myScroll = $(obj).data('myScroll');
 	}
 
 	$.fn.lt_tab = function(options){
@@ -286,14 +274,13 @@
 			//tab滑动事件
 			tab_touchstart_event(obj,opts);
 			tab_touchmove_event(obj,opts);
-
 			tab_touchend_event(obj,opts);
 
+			//添加导航滑动标志
 			add_bottom_arrow(obj);
 
-
+			//自动添加 iscroll
 			var objCon = $('.tab_content_container .tab_content', $(this));
-
 			add_iscroll(obj,objCon,opts);
 		});
 		// each end
@@ -308,7 +295,6 @@
 		minItems: 3,
 		onItem:0,
 		changeMode : 'click',
-		tabConPosition:$('.tab_item'),
 		callBack: function(){
 		}
 	};
