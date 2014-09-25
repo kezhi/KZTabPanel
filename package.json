@@ -1,0 +1,14 @@
+{
+  "name": "zhongxin",
+  "version": "0.1.0",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:kezhi/zhongxin.git"
+  },
+  "devDependencies": {
+    "gulp": "^3.8.7",
+    "gulp-uglify": "^0.3.1",
+    "gulp-rename": "^1.2.0",
+    "gulp-concat": "^2.3.4"
+  }
+}
