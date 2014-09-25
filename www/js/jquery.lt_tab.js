@@ -193,21 +193,36 @@
 		obj.startX = null;
 	}
 
-/*	$.fn.refresh_tab_header = function(htmlText){
-		var opts = $.extend({},$.fn.lt_tab.defaults,$(this).opts);
+	/**
+	 * 自动添加 iscroll
+	 * @param obj
+	 */
+	//xScroll01 = new IScroll('#tab_con01', {
+	function add_iscroll(objCon,_this,opts){
+		$.each(objCon, function(index) {
+			$(this).attr('id','tab_con0'+ index);
+			var xScroll = 'xScroll0'+index;
+//			console.log(xScroll);
+			$('.con_list').height($('.tab_content_container').height());
+			xScroll = new IScroll('#tab_con0'+index, {
+				scrollbars: true,
+				mouseWheel: true,
+				interactiveScrollbars: true,
+				shrinkScrollbars: 'scale',
+				fadeScrollbars: true
+			});
 
-		return this.each(function(){
-			var obj = $('.tab_header ul', $(this));
-			$(obj).closest('.tab_header ul',$(this)).html(htmlText);
-
-			// 设置li的位置
-			set_li_position(obj,opts);
-
-			//给li增加click事件，用于tab切换
-			add_li_click_event(obj,opts);
+			console.log($('.con_list').height());
 		});
-	}*/
 
+	}
+
+
+
+	/**
+	 * 初使化值
+	 * @param obj
+	 */
 	function initDataValue(obj){
 		var currentIndex = $(obj).data('currentIndex',0);
 		var startLeft = $(obj).data('startLeft',0);
@@ -226,12 +241,10 @@
 		 * 意思就是obj对象下面的ul中的li元素索引index($(this))
 		 * 这里的$(this)则是在li元素中找到当前li元素的索引。
 		 */
-		return this.each(function(){
+		return this.each(function(index){
 			var obj = $('.tab_header ul', $(this));
 			obj.opts = opts;
 			var _this = $(this);
-
-			var con
 
 			//设置初始值
 			initDataValue(obj);
@@ -249,9 +262,21 @@
 			tab_touchend_event(obj,opts);
 
 			add_bottom_arrow(obj);
+
+
+			var objCon = $('.tab_content_container .tab_content', $(this));
+
+			add_iscroll(objCon,opts);
+//			console.log(_this);
+
+
 		});
 		// each end
-	}
+
+
+	};
+
+
 
 	/**
 	 * 定义默认配置项

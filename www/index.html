@@ -9,7 +9,7 @@
 		<link href="css/common.css" type="text/css" rel="stylesheet" />
 		<link href="css/zhongxin.css" type="text/css" rel="stylesheet" />
 	</head>
-	<body onload="loaded()">
+	<body>
 		<div class="page">
 			<div class="panel_header">
 			</div>
@@ -29,7 +29,7 @@
 						<div class="tab_content_container">
 							<div class="tab_item">
 							<div class="con_list">
-								<div class="tab_content" id="tab_con01">
+								<div class="tab_content">
 									<div class="con_scroll">
 									<img class="full-img" src="images/banner01.jpg" alt=""/>
 									<div class="module">
@@ -113,7 +113,7 @@
 									</div>
 									</div>
 								</div>
-								<div class="tab_content" id="tab_con02">
+								<div class="tab_content">
 								<div class="con_scroll">
 									<img class="full-img" src="images/banner02.jpg" alt=""/>
 									<div class="module">
@@ -175,7 +175,7 @@
 									</div>
 								</div>
 								</div>
-								<div class="tab_content" id="tab_con03">
+								<div class="tab_content">
 									<div class="con_scroll">
 										<img class="full-img" src="images/banner03.jpg" alt=""/>
 										<div class="module">
@@ -225,7 +225,7 @@
 		<script type="text/javascript" src="js/iscroll.js"></script>
 		<script type="text/javascript">
 
-		FastClick.attach(document.body);
+		//FastClick.attach(document.body);
 		//tab
 		$(".tab").lt_tab({
 			changeMode : "click",
@@ -237,74 +237,69 @@
 		});
 
 
-		var myScroll;
-		var xScroll01;
-		var xScroll02;
-		var xScroll03;
-		$('.tab_content').width($(window).width());
-		$('.tab_item').width($('.tab_content').width()*3);
-		$('.con_list').height($('.tab_content_container').height());
-		var cons = $('.tab_content');
-		for(var i=0;i<cons.length;i++){
-			var conLeft = $('.tab_content').width() * i;
-			$(cons[i]).css({left:conLeft})
-		}
+	var myScroll;
+	 /*var xScroll01;
+	var xScroll02;
+	var xScroll03;*/
+	$('.tab_content').width($(window).width());
+	$('.tab_item').width($('.tab_content').width()*3);
+//	 $('.con_list').height($('.tab_content_container').height());
+	var cons = $('.tab_content');
+	for(var i=0;i<cons.length;i++){
+		var conLeft = $('.tab_content').width() * i;
+		$(cons[i]).css({left:conLeft})
+	}
 
-		function loaded () {
-			xScroll01 = new IScroll('#tab_con01', {
-				scrollbars: true,
-				mouseWheel: true,
-				interactiveScrollbars: true,
-				shrinkScrollbars: 'scale',
-				fadeScrollbars: true
-			});
-			xScroll02 = new IScroll('#tab_con02', {
-				scrollbars: true,
-				mouseWheel: true,
-				interactiveScrollbars: true,
-				shrinkScrollbars: 'scale',
-				fadeScrollbars: true
-			});
+	$(document).ready(function(){
 
-			xScroll03 = new IScroll('#tab_con03', {
-				scrollbars: true,
-				mouseWheel: true,
-				interactiveScrollbars: true,
-				shrinkScrollbars: 'scale',
-				fadeScrollbars: true
-			});
+		/*xScroll01 = new IScroll('#tab_con00', {
+			scrollbars: true,
+			mouseWheel: true,
+			interactiveScrollbars: true,
+			shrinkScrollbars: 'scale',
+			fadeScrollbars: true
+		});
+		xScroll02 = new IScroll('#tab_con01', {
+			scrollbars: true,
+			mouseWheel: true,
+			interactiveScrollbars: true,
+			shrinkScrollbars: 'scale',
+			fadeScrollbars: true
+		});
 
+		xScroll03 = new IScroll('#tab_con02', {
+			scrollbars: true,
+			mouseWheel: true,
+			interactiveScrollbars: true,
+			shrinkScrollbars: 'scale',
+			fadeScrollbars: true
+		});
+		 */
 
-			myScroll = new IScroll('.tab_content_container', {
-				scrollX: true,
-				momentum: false,
-				snap: true,
-				snapSpeed: 400,
-				keyBindings: true,
-				indicators: {
-					el: document.getElementById('indicator'),
-					resize: false
-				}
-			});
+		myScroll = new IScroll('.tab_content_container', {
+			scrollX: true,
+			momentum: false,
+			snap: '.tab_content',
+			snapSpeed: 400,
+			keyBindings: true,
+			indicators: {
+				el: document.getElementById('indicator'),
+				resize: false
+			}
+		});
 
-			var liWidth = $('.tab_header li').width();
-			myScroll.on('scrollEnd', function () {
+		var liWidth = $('.tab_header li').width();
+		myScroll.on('scrollEnd', function () {
+			$('.tab_header li a').removeClass('on');
+			$('.tab_header li').eq(myScroll.currentPage.pageX).children('a').addClass('on');
+			$('.cur_on').css({'transform':'translate('+myScroll.currentPage.pageX*liWidth+'px)',transition: '100ms'});
 
-				$('.tab_header li a').removeClass('on');
-				$('.tab_header li').eq(myScroll.currentPage.pageX).children('a').addClass('on');
-				$('.cur_on').css({'transform':'translate('+myScroll.currentPage.pageX*liWidth+'px)',transition: '100ms'});
-
-			});
-
-
+		});
 
 
+	document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+})
 
-
-
-		}
-
-		document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
 		</script>
 	</body>
 </html>
