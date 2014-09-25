@@ -3,11 +3,13 @@
 - for mobile
 - plugin
 
-## 技术
+## 技术栈
 
 - zeptojs
 - fastclick
 - iScroll
+
+## 用法
 
 	
 ## Contributing
