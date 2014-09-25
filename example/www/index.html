@@ -16,19 +16,13 @@
 			<div class='panel_content'>
 				<div class="container">	
 					<div class="tab">
-						<!--<div class="tab_header" id="header">
+						<div class="tab_header">
 							<ul>
-								<li><a href="#">9分享兑</a></li><li><a href="#">精彩365</a></li><li><a href="#">9元看电影</a></li>
-							</ul>
-						</div>-->
-						<div class="tab_header" id="indicator">
-							<ul id="dotty">
 								<li><a href="#">9分享兑</a></li><li><a href="#">精彩365</a></li><li><a href="#">9元看电影</a></li>
 							</ul>
 						</div>
 						<div class="tab_content_container">
 							<div class="tab_item">
-							<div class="con_list">
 								<div class="tab_content">
 									<div class="con_scroll">
 									<img class="full-img" src="images/banner01.jpg" alt=""/>
@@ -111,7 +105,7 @@
 											</div>
 										</div>
 									</div>
-									</div>
+								</div>
 								</div>
 								<div class="tab_content">
 								<div class="con_scroll">
@@ -210,7 +204,6 @@
 									</div>
 								</div>
 							</div>
-							</div>
 						</div>
 					</div>
 				</div>
@@ -219,86 +212,21 @@
 				<button>我要开卡</button>
 			</div>	
 		</div>
-		<script type="text/javascript" src="js/jquery.min.js"></script>
-		<script type="text/javascript" src="js/fastclick.js"></script>
+		<script type="text/javascript" src="lib/jquery.min.js"></script>
+		<script type="text/javascript" src="lib/fastclick.js"></script>
 		<script type="text/javascript" src="js/jquery.lt_tab.js"></script>
-		<script type="text/javascript" src="js/iscroll.js"></script>
+		<script type="text/javascript" src="lib/iscroll.js"></script>
 		<script type="text/javascript">
-
-		//FastClick.attach(document.body);
+//		FastClick.attach(document.body);
 		//tab
 		$(".tab").lt_tab({
 			changeMode : "click",
 			onItem:0,
-			callBack:function(currentIndex){
+			callBack:function(currentIndex,myScroll){
 				console.log(currentIndex);
 				myScroll.goToPage(currentIndex, 0, 400);
 			}
 		});
-
-
-	var myScroll;
-	 /*var xScroll01;
-	var xScroll02;
-	var xScroll03;*/
-	$('.tab_content').width($(window).width());
-	$('.tab_item').width($('.tab_content').width()*3);
-//	 $('.con_list').height($('.tab_content_container').height());
-	var cons = $('.tab_content');
-	for(var i=0;i<cons.length;i++){
-		var conLeft = $('.tab_content').width() * i;
-		$(cons[i]).css({left:conLeft})
-	}
-
-	$(document).ready(function(){
-
-		/*xScroll01 = new IScroll('#tab_con00', {
-			scrollbars: true,
-			mouseWheel: true,
-			interactiveScrollbars: true,
-			shrinkScrollbars: 'scale',
-			fadeScrollbars: true
-		});
-		xScroll02 = new IScroll('#tab_con01', {
-			scrollbars: true,
-			mouseWheel: true,
-			interactiveScrollbars: true,
-			shrinkScrollbars: 'scale',
-			fadeScrollbars: true
-		});
-
-		xScroll03 = new IScroll('#tab_con02', {
-			scrollbars: true,
-			mouseWheel: true,
-			interactiveScrollbars: true,
-			shrinkScrollbars: 'scale',
-			fadeScrollbars: true
-		});
-		 */
-
-		myScroll = new IScroll('.tab_content_container', {
-			scrollX: true,
-			momentum: false,
-			snap: '.tab_content',
-			snapSpeed: 400,
-			keyBindings: true,
-			indicators: {
-				el: document.getElementById('indicator'),
-				resize: false
-			}
-		});
-
-		var liWidth = $('.tab_header li').width();
-		myScroll.on('scrollEnd', function () {
-			$('.tab_header li a').removeClass('on');
-			$('.tab_header li').eq(myScroll.currentPage.pageX).children('a').addClass('on');
-			$('.cur_on').css({'transform':'translate('+myScroll.currentPage.pageX*liWidth+'px)',transition: '100ms'});
-
-		});
-
-
-	document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
-})
 
 		</script>
 	</body>
