@@ -2,6 +2,8 @@
 
 - for mobile
 - plugin
+- fast development
+- easy to use
 
 ## 技术栈
 
